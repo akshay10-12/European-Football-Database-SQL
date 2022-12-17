@@ -1,0 +1,5 @@
+--Finding the list of participating countries --
+
+SELECT *
+FROM Country
+ORDER BY name;
