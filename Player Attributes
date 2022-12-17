@@ -1,0 +1,115 @@
+-- Highest rated players -- 
+SELECT player_name, ROUND(AVG(overall_rating),2) AS ratings, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+WHERE overall_rating > 0
+GROUP BY player_name
+ORDER BY ratings DESC
+LIMIT 10;
+
+-- Top players by potential --
+SELECT player_name, ROUND(AVG(potential),2) AS potential_avg, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+WHERE potential>0
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by crossings --
+SELECT player_name, ROUND(AVG(crossing), 2) AS avg_crossing, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+WHERE crossing>0
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by penalties --
+SELECT player_name, ROUND(AVG(penalties), 2) AS avg_penalties, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+WHERE penalties>0
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by aggression --
+SELECT player_name, ROUND(AVG(aggression), 2) AS avg_aggression, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+WHERE aggression>0
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+--Top players by strength --
+SELECT player_name, ROUND(AVG(strength), 2) AS avg_strength, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by stamina -- 
+SELECT player_name, ROUND(AVG(stamina), 2) AS avg_stamina, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by sprint speed -- 
+SELECT player_name, ROUND(AVG(sprint_speed), 2) AS sprintspeed, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by ball control --
+SELECT player_name, ROUND(AVG(ball_control), 2) AS BallControl, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by accuracy of free kick -- 
+SELECT player_name, ROUND(AVG(free_kick_accuracy), 2) AS AccuracyFreeKick, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by accuracy of header --
+SELECT player_name, ROUND(AVG(heading_accuracy), 2) AS accuracyheader, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Top players by dribbling accuracy --
+SELECT player_name, ROUND(AVG(dribbling), 2) AS dribbling_accuracy, preferred_foot
+FROM Player P
+JOIN Player_Attributes Pa
+ON P.player_api_id = Pa.player_api_id 
+GROUP BY 1 
+ORDER BY 2 DESC
+LIMIT 10;
+
+
+
