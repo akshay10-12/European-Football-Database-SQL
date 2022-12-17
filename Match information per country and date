@@ -1,0 +1,20 @@
+--Returns detailed match infomrmation in terms of number of goals scored and winning team--
+
+SELECT C.Name AS CountryName, season, stage, date, HT.team_long_name AS HomeTeam,
+       AT.team_long_name AS AwayTeam, home_team_goal, away_team_goal,
+CASE 
+    WHEN home_team_goal > away_team_goal THEN HT.team_long_name
+    WHEN away_team_goal > home_team_goal THEN AT.team_long_name
+    ELSE 'Draw'
+END AS WinningTeam
+FROM Match M
+JOIN Country C
+ON C.id = M.country_id
+JOIN League L 
+ON L.id = M.league_id
+LEFT JOIN Team AS HT 
+ON HT.team_api_id = M.home_team_api_id 
+LEFT JOIN Team AS AT
+ON AT.team_api_id = M.away_team_api_id
+WHERE C.name IN ('England', 'France')
+ORDER BY season;
