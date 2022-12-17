@@ -1,0 +1,52 @@
+--Returns the number of matches played per season--
+SELECT C.name AS CountryName,
+       L.name AS LeagueName,
+       season, 
+       COUNT(DISTINCT M.id) AS Matches_Played
+FROM Match M
+JOIN Country C 
+ON C.id = M.country_id 
+JOIN League L
+ON L.id = M.league_id 
+LEFT JOIN Team AS HT 
+ON HT.team_api_id = M.home_team_api_id 
+LEFT JOIN Team AS AT 
+ON AT.team_api_id = M.away_team_api_id
+WHERE C.name IN ('England', 'France', 'Spain', 'Germany', 'Portugal')
+GROUP BY C.name, L.name, season;
+
+--Teams with the number of home matches played--
+SELECT C.name AS CountryName,
+       L.name AS LeagueName,
+       HT.team_long_name AS home_team,
+       COUNT(DISTINCT M.id) AS matches_played
+FROM Match M
+JOIN Country C 
+ON C.id = M.country_id 
+JOIN League L 
+ON L.id = M.league_id 
+LEFT JOIN Team AS HT 
+ON HT.team_api_id = M.home_team_api_id 
+LEFT JOIN Team AS AT 
+ON AT.team_api_id = M.away_team_api_id
+WHERE C.name IN ('England', 'Spain', 'France', 'Germany', 'Portugal')
+GROUP BY HT.team_long_name, C.name, L.name
+ORDER BY C.name, L.name, HT.team_long_name;
+
+--Teams with the number of away matches played--
+SELECT C.name AS CountryName,
+       L.name AS LeagueName,
+       AT.team_long_name AS away_team,
+       COUNT(DISTINCT M.id) AS matches_played
+FROM Match M
+JOIN Country C 
+ON C.id = M.country_id 
+JOIN League L 
+ON L.id = M.league_id 
+LEFT JOIN Team AS HT 
+ON HT.team_api_id = M.home_team_api_id 
+LEFT JOIN Team AS AT 
+ON AT.team_api_id = M.away_team_api_id
+WHERE C.name IN ('England', 'Spain', 'France', 'Germany', 'Portugal')
+GROUP BY AT.team_long_name, C.name, L.name
+ORDER BY C.name, L.name, AT.team_long_name;
