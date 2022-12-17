@@ -1,0 +1,5 @@
+--Finding the name of the leagues associated with each country--
+SELECT C.name as CountryName, L.name as LeagueName
+FROM League L
+JOIN Country C 
+ON C.Id = L.country_id;
