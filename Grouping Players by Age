@@ -1,0 +1,30 @@
+--Categorizing players as Young, Average and Old based on Age-- 
+SELECT player_name, birthday, (DATE('now')-birthday) Age,
+CASE 
+    WHEN (DATE('now')-birthday) < 30 THEN 'Young'
+    WHEN (DATE('now')-birthday) BETWEEN 30 AND 40 THEN 'Average'
+    WHEN (DATE('now')-birthday) > 40 THEN 'Old'
+END AS Age_Group
+FROM Player;
+
+--Finding the youngest player--
+SELECT player_name, birthday, (DATE('now')-birthday) Age,
+CASE 
+    WHEN (DATE('now')-birthday) < 30 THEN 'Young'
+    WHEN (DATE('now')-birthday) BETWEEN 30 AND 40 THEN 'Average'
+    WHEN (DATE('now')-birthday) > 40 THEN 'Old'
+END AS Age_Group
+FROM Player
+ORDER BY (DATE('now')-birthday) DESC
+LIMIT 1;
+
+--Finding the oldest player--
+SELECT player_name, birthday, (DATE('now')-birthday) Age,
+CASE 
+    WHEN (DATE('now')-birthday) < 30 THEN 'Young'
+    WHEN (DATE('now')-birthday) BETWEEN 30 AND 40 THEN 'Average'
+    WHEN (DATE('now')-birthday) > 40 THEN 'Old'
+END AS Age_Group
+FROM Player
+ORDER BY (DATE('now')-birthday) DESC
+LIMIT 1;
