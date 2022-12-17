@@ -28,3 +28,7 @@ END AS Age_Group
 FROM Player
 ORDER BY (DATE('now')-birthday) DESC
 LIMIT 1;
+
+--Average Age--
+SELECT ROUND(AVG((DATE('now')-birthday)), 2) AS Average_Age
+FROM Player;
