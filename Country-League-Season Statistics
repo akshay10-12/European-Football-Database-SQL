@@ -1,0 +1,21 @@
+--Statistics of league matches grouped by country and season--
+
+SELECT C.Name AS CountryName, 
+       season, 
+       COUNT(distinct stage) AS number_of_stages,
+       ROUND(AVG(home_team_goal), 2) AS avg_home_team_goals,
+       ROUND(AVG(away_team_goal), 2) AS avg_away_team_goals,
+       ROUND(AVG(home_team_goal + away_team_goal), 2) AS avg_total_goals,
+       SUM(home_team_goal + away_team_goal) AS total_goals
+FROM Match M
+JOIN Country C
+ON C.id = M.country_id 
+JOIN League L
+ON L.id = M.league_id 
+LEFT JOIN Team AS HT 
+ON HT.team_api_id = M.home_team_api_id 
+LEFT JOIN Team AS AT
+ON AT.team_api_id = M.away_team_api_id
+WHERE C.name IN ('England', 'Spain', 'Portugal', 'France', 'Germany')
+GROUP BY C.name, season
+HAVING COUNT(distinct stage > 10); 
